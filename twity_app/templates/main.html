@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <a href="{% url 'login' %}">Login</a><p style="text-align:right;"><a href="{% url 'register' %}">Register</a></p>
+    <center><h2>Twity</h2></center>
+    {% load static %}
+    <center><img src="{% static 'logo.jpeg' %}" alt="Twity logo" /></center>
+    {% for twit in twits %}
+    <b>{{ twit.title }}</b>&emsp;from&emsp;<b>{{ twit.user }}</b><br><br>
+        &emsp;{{ twit.content }}
+        {% for comment in twit.comment_set.all %}
+            <p id="comments" style="font-size:13px; margin-left:50px">{{ comment.content }}<br>
+            &emsp;by <b>{{ comment.user }}</b></p>
+        {% endfor %}
+    {% empty %}
+        No twity yet :(
+    {% endfor %}
+
+
+</body>
+</html>
